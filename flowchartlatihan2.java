@@ -2,37 +2,45 @@ import java.util.Scanner;
 
 public class flowchartlatihan2 {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        Scanner input = new Scanner(System.in);
 
-        System.out.print("Masukkan jenis buku (kamus/novel/yang lain): ");
-        String jenisBuku = scanner.nextLine().toLowerCase();
+        System.out.print("Masukkan jenis buku (kamus/novel/lainnya): ");
+        String jenisBuku = input.nextLine().toLowerCase();
 
-        System.out.print("Maskkan jumlah buku: ");
-        int jumlahBuku = scanner.nextInt();
+        System.out.print("Masukkan jumlah buku: ");
+        int jumlahBuku = input.nextInt();
 
-        System.out.print("Masukkan harga buku: ");
-        double hargaBuku = scanner.nextDouble();
+        System.out.print("Masukkan harga per buku: ");
+        double hargaPerBuku = input.nextDouble();
 
-        double diskon = 0;
+        double diskon = 0.0; 
+        double totalHarga = jumlahBuku * hargaPerBuku;
 
         if (jenisBuku.equals("kamus")) {
-            diskon = 10;
             if (jumlahBuku > 2) {
-                diskon += 2;
+                diskon = 0.12; 
+            } else {
+                diskon = 0.10;
             }
-        }else if (jenisBuku.equals("novel")) {
-            diskon = 7;
+        } else if (jenisBuku.equals("novel")) {
             if (jumlahBuku > 3) {
-                diskon += 2;
-            }else {
-                diskon += 1;
+                diskon = 0.09; 
+            } else {
+                diskon = 0.08; 
             }
-        }else {
+        } else {
             if (jumlahBuku > 3) {
-                diskon = 5;
-
+                diskon = 0.05; 
             }
-        }System.out.println("Anda mendapat diskon sebesar " + diskon + "%" );
+        }
 
+       
+        double totalDiskon = totalHarga * diskon;
+        double totalBayar = totalHarga - totalDiskon;
+
+      
+        System.out.println("Total harga sebelum diskon: Rp " + totalHarga);
+        System.out.println("Diskon yang diberikan: " + (diskon * 100) + "%");
+        System.out.println("Total yang harus dibayar: Rp " + totalBayar);
     }
 }
